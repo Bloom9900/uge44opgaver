@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
+import upper, { text1, text2, text3 } from "./file1";
+import object, {males, females, newFemales} from "./file2";
+import {MultiWelcome} from "./file3";
+
+const { firstName, email } = object;
+const allPersons = [...males, ...females];
+const allPersons2 = [...males, "Kurt", "Helle", ...females, "Tina"];
+
 
 function App() {
+
+  console.log(allPersons);
+  console.log(allPersons2);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h2>Ex 1</h2>
+      <p>{upper("Uppercase me now")}</p>
+      <p>{text1}</p>
+      <p>{text2}</p>
+      <p>{text3}</p>
+
+      <h2>Ex 2</h2>
+      <p>{firstName}</p>
+      <p>{email}</p>
+
+      <h2>Ex 3</h2>
+      <MultiWelcome/>
     </div>
   );
 }
