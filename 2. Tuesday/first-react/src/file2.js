@@ -7,7 +7,6 @@ export default {
 
 export const males = ["Peter","Jan"];
 export const females = ["Janne","Sarah"];
-export const newFemales = ["Tina", "Helle"];
 
 export const persons = [
     {firstName:"Kurt",lastName:"Wonnegut",gender: "Male",email: "k@wonnegut.dk", phone: "12345"},
