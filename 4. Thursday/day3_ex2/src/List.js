@@ -5,6 +5,7 @@ function NameList() {
     const [name, setName] = useState('');
     const [names, setNames] = useState([]);
     const [table, setTable] = useState(getTable);
+    const [newName, setNewName] = useState('');
 
     function handleChange(event) {
         const value = event.target.value;
@@ -14,10 +15,7 @@ function NameList() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        names.push(name)
-        setNames(prevNames => [...prevNames, {
-            name: name
-        }]);
+        names.push(name);
         setTable(getTable);
     }
 
@@ -27,6 +25,19 @@ function NameList() {
 
     function deletePerson(id) {
         names.splice(id, 1);
+        setTable(getTable);
+    }
+
+    function editName(id) {
+        names.splice(id, 1, newName);
+        setTable(getTable); 
+    }
+
+    function editChange(event) {
+        event.preventDefault();
+        const value = event.target.value;
+        setNewName(value);
+        setTable(getTable);
     }
 
     function getTable() {
@@ -38,14 +49,16 @@ function NameList() {
                             <th>ID</th>
                             <th>Name</th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {names.map((name, index) => (
-                            <tr key={index+1}>
-                                <td>{index + 1}</td>
+                            <tr key={index +1}>
+                                <td>{index +1}</td>
                                 <td>{name}</td>
-                                <button type="submit" onClick={() => deletePerson({index}+1)}>Delete</button>
+                                <td><button type="submit" onClick={() => deletePerson(index)}>Delete</button></td>
+                                <td><button type="submit" onClick={() => editName(index)}>Edit</button></td>
                             </tr>
                         ))}
                     </tbody>
@@ -59,6 +72,10 @@ function NameList() {
             <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Name" onChange={handleChange} />
                 <button type="submit">Save</button>
+            </form>
+            <form onSubmit={editChange}>
+                <input type="text" placeholder="New Name" onChange={editChange} />
+                <button type="submit">Save Name Edit</button>
             </form>
 
             {table}
