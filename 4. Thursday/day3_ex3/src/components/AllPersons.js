@@ -11,7 +11,19 @@ export default function AllPersons(props) {
           <tr><th>Age</th><th>Name</th><th>Gender</th><th>Email</th></tr>
         </thead>
         <tbody>
-          {/*Add the rows here */}
+          {persons.map(person => {
+            return (
+            <tr key={person.id}>
+              <td>{person.age}</td>
+              <td>{person.name}</td>
+              <td>{person.gender}</td>
+              <td>{person.email}</td>
+              <td>(
+                <a href="#" onClick={(e)=>{e.preventDefault();editPerson(person)}}>edit</a> /
+                <a href="#" onClick={(e)=>{e.preventDefault();deletePerson(person.id)}}>delete</a>
+                )</td>
+            </tr>
+          )})}
         </tbody>
       </table>
       

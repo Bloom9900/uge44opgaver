@@ -14,6 +14,8 @@ function apiFacade() {
 
   function addEditPerson(person, callback) {
    //Complete me. A smart version will handle both Add and Edit, but focus on Add (POST) only first
+   const options = utils.makeOptions("POST", person);
+   utils.fetchAny(URL, callback, options);
   }
 
   function deletePerson(id, callback) {

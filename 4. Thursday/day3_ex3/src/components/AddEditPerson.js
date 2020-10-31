@@ -1,12 +1,23 @@
 import React, { useState } from "react";
+import apiFacade from '../apiFacade'
 
 export default function AddEditPerson(props) {
   const [person, setPerson] = useState({ ...props.newPerson });
 
   /* Add the required changes to use Reacts "Controlled Component Pattern" 
      to handle inputs related to a person */
-  const handleChange = (evt) => {}
-  const handleSubmit = (evt) => {}
+  const handleChange = (evt) => {
+    const value = evt.target.value;
+    setPerson(({
+      ...props.newPerson,
+      [evt.target]: value
+    }))
+  }
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    apiFacade.addEditPerson(person);
+    
+  }
 
   return (
     <div>
@@ -26,6 +37,7 @@ export default function AddEditPerson(props) {
               className="form-control"
               id="name"
               placeholder="Enter Name"
+              onClick={handleChange}
             />
           </div>
         </div>
@@ -39,6 +51,7 @@ export default function AddEditPerson(props) {
               className="form-control"
               id="age"
               placeholder="Enter age"
+              onClick={handleChange}
             />
           </div>
         </div>
@@ -52,6 +65,7 @@ export default function AddEditPerson(props) {
               className="form-control"
               id="email"
               placeholder="Enter email"
+              onClick={handleChange}
             />
           </div>
         </div>
@@ -64,6 +78,7 @@ export default function AddEditPerson(props) {
               className="form-control"
               id="gender"
               placeholder="Enter Gender"
+              onClick={handleChange}
             />
           </div>
         </div>
